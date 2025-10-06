@@ -33,7 +33,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => $validate ['jenis_kelamin'],
             'tahun_masuk' => $validate ['tahun_masuk']
         ]);
-        return redirect()->route('admin.data-siswa')->with('success', 'Tambah Siswa Berhasil');
+        return redirect()->route('admin.siswa')->with('success', 'Tambah Siswa Berhasil');
     }
     public function deleteSiswa(string $id){
         try{
