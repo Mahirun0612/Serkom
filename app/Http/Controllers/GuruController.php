@@ -7,6 +7,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
@@ -24,13 +25,21 @@ class GuruController extends Controller
         $validate = $request->validate([
             'nama_guru' => 'required',
             'nip' => 'required',
-            'mapel' => 'required'
+            'mapel' => 'required',
+            'foto' => 'required|image|mimes:png,jpg,jpeg'
         ]);
+
+        $foto = $request->file('foto');
+        $filename = time()."-".$request->name.".".$foto->getClientOriginalExtension();
+        $foto->storeAs('foto-guru', $filename);
+
+        $validate['foto'] = $filename;
 
         Guru::create([
             'nama_guru' => $validate['nama_guru'],
             'nip' => $validate['nip'],
             'mapel' => $validate['mapel'],
+            'foto' =>$filename,
         ]);
         return redirect()->route('admin.guru')->with('success', 'Tambah Guru Berhasil');
     }
@@ -61,13 +70,27 @@ class GuruController extends Controller
             return redirect()->back();
         }
 
-        $guru = Guru::find($id);
-
         $validate = $request->validate([
             'nama_guru' => 'required',
             'nip' => 'required',
             'mapel' => 'required',
+            'foto' => 'required|image|mimes:png,jpg,jpeg',
         ]);
+
+        $guru = Guru::find($id);
+        if($request->hasFile('foto')){
+
+            if(Storage::exists('foto-guru/'.$guru->foto)){
+                Storage::delete('foto-guru/'.$guru->foto);
+            }
+
+            $image = $request->file('foto');
+            $filename = time()."-".$request->name.".".$image->getClientOriginalExtension();
+            $image->storeAs('foto-guru/',$filename);
+
+            $validate['foto'] = $filename;
+        }
+
 
         $guru->update($validate);
 

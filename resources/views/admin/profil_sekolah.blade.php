@@ -2,21 +2,31 @@
 @section('content')
 <div class="container mt-4">
     <div class="py-3 fw-bold text-white d-flex justify-content-between" style="background-color: black;width:100%;border-radius:10px">
-        <h3 class="ms-3">Profil Sekolah</h3>
+        <h3 class="ms-3">Profil Sma Art Ob</h3>
+        <a href="{{ route('profil.edit',Crypt::encrypt($profil->id)) }}" class="btn btn-success mb-2 me-3">
+            <i class="fa-solid fa-pencil me-1"></i> Edit Profil
+        </a>
     </div>
     <hr>
     <!-- Konten Utama -->
     <div class="container my-5">
     <div class="row g-4">
         <!-- Gambar Sekolah -->
-        <div class="col-md-6">
-        <img src="https://via.placeholder.com/600x400" alt="Foto Sekolah" class="img-fluid rounded">
+        <div class="col-md-4">
+        <img src="{{ asset('storage/foto-sekolah/'.$profil->logo) }}" alt="Foto Sekolah" class="img-fluid rounded"
+        style="width: 270px;">
         </div>
 
         <!-- Deskripsi -->
-        <div class="col-md-6">
+        <div class="col-md-4" style="position: relative; top: 40px;">
         <h2>Tentang Sekolah</h2>
-        <p>SMA Negeri 1 Contoh berdiri sejak tahun 1985 dan telah menjadi salah satu sekolah unggulan di kota ini. Dengan fasilitas lengkap dan tenaga pengajar profesional, kami berkomitmen untuk memberikan pendidikan terbaik bagi siswa-siswi kami.</p>
+        <p>{{ $profil->deskripsi }}</p>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <img src="{{ asset('storage/foto-sekolah/'.$profil->foto) }}" class="img-fluid mb-2" alt="Kepala_sekolah" width="200" height="250">
+            <p class="fw-bold mb-0">{{ $profil->kepala_sekolah }}</p>
+            <small class="text-muted">Kepala Sekolah</small>
         </div>
     </div>
     </div>
@@ -24,32 +34,22 @@
     <!-- Visi & Misi -->
     <section class="bg-light py-5">
     <div class="container">
-        <div class="row">
-        <div class="col-md-6 mb-4">
-            <h3>Visi</h3>
-            <p>Menjadi sekolah unggulan dalam prestasi akademik dan non-akademik serta membentuk generasi yang berkarakter dan berdaya saing global.</p>
-        </div>
-        <div class="col-md-6">
-            <h3>Misi</h3>
-            <ul>
-            <li>Meningkatkan kualitas pembelajaran.</li>
-            <li>Menanamkan nilai-nilai moral dan etika.</li>
-            <li>Mendorong prestasi siswa dalam berbagai bidang.</li>
-            <li>Mengembangkan potensi siswa sesuai minat dan bakat.</li>
-            </ul>
-        </div>
+        <div class="col-md-10 mb-4">
+            <h3>Visi & Misi</h3>
+            <p>{{ $profil->visi_misi }}</p>
         </div>
     </div>
     </section>
 
     <section class="py-5 bg-body-secondary">
-    <div class="container">
-        <h3 class="mb-4">Kontak Sekolah</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <p><strong>Alamat:</strong> Jl. Pendidikan No. 123, Kota Contoh</p>
-                <p><strong>Telepon:</strong> (021) 12345678</p>
-                <p><strong>Email:</strong> info@sman1contoh.sch.id</p>
+    <div class="container table">
+        <h3 class="mb-4 text-center">Kontak Sekolah</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <p><strong>Alamat:</strong> {{ $profil->alamat }}</p>
+                <p><strong>Telepon:</strong> {{ $profil->kontak }}</p>
+                <p><strong>Npsn:</strong> {{ $profil->npsn }}</p>
+                <p><strong>Email:</strong> smpn1sukarame@yahoo.co.id</p>
             </div>
         </div>
     </div>

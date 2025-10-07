@@ -11,6 +11,17 @@
         </div>
 
         <div class="card-body p-4">
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>Terjadi Kesalahan</strong>
+            <ul class="mb-0 mmt-2">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach</ul>
+            </div>
+        @endif
             <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-floating mb-3">
@@ -19,7 +30,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" id="nisn" name="nisn" class="form-control" placeholder="Nisn" required>
+                    <input type="integer" id="nisn" name="nisn" class="form-control" placeholder="Nisn" required >
                     <label for="nisn">Nisn</label>
                 </div>
 

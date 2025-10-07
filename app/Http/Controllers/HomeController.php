@@ -18,4 +18,12 @@ class HomeController extends Controller
         $data['guru'] = Guru::all();
         return view('public.home', $data);
     }
+    public function siswa(){
+        $data['siswa'] = Siswa::all();
+        return view('public.siswa', $data);
+    }
+    public function guru(){
+        $data['guru'] = Guru::all();
+        return view('public.guru', $data);
+    }
 }

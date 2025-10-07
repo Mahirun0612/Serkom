@@ -6,9 +6,19 @@
         <div class="card-header text-white text-center rounded-top-4"
              style="background: #17581b;">
             <h3 class="mb-0 fw-bold">
-                <i class="fas fa-plus me-2"></i>Ekstrakurikuler
+                <i class="fas fa-plus me-2"></i>Edit Ekstrakurikuler
             </h3>
         </div>
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <div class="card-body p-4">
             <form action="{{ route('ekskul.update', Crypt::encrypt($ekskul->id)) }}" method="POST" enctype="multipart/form-data">
@@ -28,9 +38,9 @@
                     <label for="jadwal_latihan">Jadwal Latihan</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" value="{{ old('deskripsi', $ekskul->deskripsi) }}" required>
-                    <label for="deskripsi">Deskripsi</label>
+                <div class="mb-3">
+                    <label for="deskripsi" class="mb-2" >Deskripsi</label>
+                    <textarea name="deskripsi" id="deskripsi" rows="5" style="width: 400px" required>{{ $ekskul->deskripsi }}</textarea>
                 </div>
 
                 <div>

@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" id="nisn" name="nisn" class="form-control" placeholder="Nisn" value="{{ old('nisn', $siswa->nisn) }}" required>
+                    <input type="integer" id="nisn" name="nisn" class="form-control" placeholder="Nisn"  value="{{ old('nisn', $siswa->nisn) }}" required maxlength="10" minlength="10">
                     <label for="nisn">Nisn</label>
                 </div>
 

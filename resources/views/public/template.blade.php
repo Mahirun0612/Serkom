@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.7.2-web/css/all.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.js"></script>
+    <script src ="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap5.js"></script>
+    <link herf="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link herf="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link herf="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap5.css" rel="stylesheet">
     <style>
         body{
             font-family: 'open sans', sans-serif;
@@ -54,8 +66,8 @@
 <body>
     <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-background">
         <div class="container">
-            <img src="{{ asset('storage/foto-sekolah/smpn-1-sukarame1-removebg-preview.png') }}" alt="logo" width="50" class="me-2">
-            <a href="{{ route('beranda') }}" class="navbar-brand fw-bold">SMPN 1 SUKARAME</a>
+            <img src="{{ asset('storage/foto-sekolah/logo.png') }}" alt="logo" width="50" class="me-2">
+            <a href="{{ route('beranda') }}" class="navbar-brand fw-bold">Sma Art Ob</a>
 
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,19 +77,33 @@
             <!-- Collapsible Content -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                   <!-- Menu Navigasi (Bar Menu) -->
                     <li class="nav-item">
+                        <!-- Tautan ke halaman Beranda -->
                         <a class="nav-link" href="{{ route('beranda') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Tautan ke halaman Profil Sekolah -->
                         <a class="nav-link" href="{{ route('public.profil') }}">Profil Sekolah</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Tautan ke halaman Guru -->
+                        <a class="nav-link" href="{{ route('public.guru') }}">Guru</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Tautan ke halaman Siswa -->
+                        <a class="nav-link" href="{{ route('public.siswa') }}">Siswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Tautan ke halaman Berita -->
                         <a class="nav-link" href="{{ route('public.berita') }}">Berita</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Tautan ke halaman Ekstrakurikuler -->
                         <a class="nav-link" href="{{ route('public.ekskul') }}">Ekstrakurikuler</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Tautan ke halaman Galeri -->
                         <a class="nav-link" href="{{ route('public.gallery') }}">Galeri</a>
                     </li>
                 </ul>
@@ -118,14 +144,14 @@
                     <p>
                         📍 Jl. Lapang Bola No. 117, SUKARAME, Kec. Sukarame, Kab. Tasikmalaya, Jawa Barat<br>
                         📞 0265545483<br>
-                        ✉️ smpn1sukarame@yahoo.co.id
+                        ✉️ SmaArtOb@yahoo.co.id
                     </p>
                 </div>
             </div>
 
             <!-- Copyright -->
             <div class="text-center py-3 border-top border-secondary mt-3">
-                <small>© 2025 SMPN 1 SUKARAME. All rights reserved.</small>
+                <small>© 2025 SMA ART OB. All rights reserved.</small>
             </div>
         </div>
     </footer>
@@ -147,6 +173,6 @@
             });
         });
     </script>
-
+<script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>

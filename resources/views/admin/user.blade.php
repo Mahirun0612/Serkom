@@ -28,7 +28,8 @@
                             <td>
                                 <a href="{{route('user.delete',Crypt::encrypt($item->id))}}" class="btn btn-sm btn-outline-danger"
                                     onclick="return confirm('Delete this data')"><i class="fas fa-trash"></i> Delete</a>
-                                <a href="{{ route('user.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                                <a href="{{ route('user.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fas fa-pencil"></i>Edit</a>
                             </td>
                         </tr>
                         @endforeach

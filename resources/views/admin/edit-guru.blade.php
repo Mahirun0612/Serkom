@@ -19,13 +19,16 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="integer" id="nip" name="nip" class="form-control" placeholder="Nip" value="{{ old('nip', $guru->nip) }}" required>
+                    <input type="integer" id="nip" name="nip" class="form-control" placeholder="Nip" value="{{ old('nip', $guru->nip) }}" required maxlength="15">
                     <label for="nip">Nip</label>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" id="mapel" name="mapel" class="form-control" placeholder="mapel" value="{{ old('mapel', $guru->mapel) }}" required>
                     <label for="mapel">Mapel</label>
+                </div>
+                <div class="mb-3">
+                    <input type="file" name="foto" id="foto" class="form-control">
                 </div>
                     <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm" style="transition:0.3s;">
                         Update

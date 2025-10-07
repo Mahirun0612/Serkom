@@ -60,7 +60,7 @@ class EkstrakurikulerController extends Controller
         $ekskul = Ekstrakurikuler::destroy($id);
         return redirect()->back()->with('success', 'berhasil dihapus.');
     }
-    public function editEkskul(Request $request,string $id){
+    public function editEkskul(string $id){
         try {
             $id = Crypt::decrypt($id);
         } catch(DecryptException $e) {
@@ -102,5 +102,14 @@ class EkstrakurikulerController extends Controller
         $ekskul->update($validate);
 
         return redirect()->route('admin.ekstrakurikuler');
+    }
+    public function detail(string $id){
+        try {
+            $id = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect()->back();
+        }
+        $data['ekskul'] = Ekstrakurikuler::find($id);
+        return view('public.detail-ekskul', $data);
     }
 }

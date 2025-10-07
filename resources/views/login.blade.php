@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <style>
+    /* Styling untuk body, menambahkan latar belakang biru muda dan menempatkan form di tengah halaman */
     body {
       font-family: Arial, sans-serif;
       background-color: #eaf7ff;
@@ -15,6 +16,7 @@
       margin: 0;
     }
 
+    /* Styling untuk card container */
     .card {
       background: #fff;
       width: 350px;
@@ -24,6 +26,7 @@
       text-align: center;
     }
 
+    /* Styling untuk bagian header card (bagian atas) */
     .card-header {
       background: linear-gradient(to right, #2d7dff, #4fa3ff);
       color: #fff;
@@ -34,6 +37,7 @@
       border-bottom-right-radius: 50% 20%;
     }
 
+    /* Styling untuk bagian body card */
     .card-body {
       padding: 20px;
     }
@@ -45,6 +49,7 @@
       color: #333;
     }
 
+    /* Styling untuk form input fields */
     .form-input {
       width: 95%;
       padding: 7px;
@@ -54,6 +59,7 @@
       font-size: 14px;
     }
 
+    /* Styling untuk link 'forgot password' */
     .forgot {
       display: block;
       margin-bottom: 20px;
@@ -67,6 +73,7 @@
       color: #2d7dff;
     }
 
+    /* Styling untuk tombol login */
     .btn {
       background: #2d7dff;
       color: white;
@@ -86,12 +93,16 @@
 </head>
 <body>
   <div class="card">
+    <!-- Header card, menampilkan nama sekolah -->
     <div class="card-header">
-      SMPN 1 Sukarame
+      SMA ART OB
     </div>
+
+    <!-- Body card, berisi form login -->
     <div class="card-body">
       <h2>Login</h2>
 
+      <!-- Menampilkan pesan error jika ada validasi yang gagal -->
       @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">
@@ -102,18 +113,22 @@
         </div>
       @endif
 
+      <!-- Form untuk login -->
       <form action="{{ route('login.auth') }}" method="POST">
         @csrf
+        <!-- Input untuk Username -->
         <div class="mb-3 mt-3" style="text-align: left">
             <label for="username">Username</label>
-            <input type="username" class="form-input" id="username" placeholder="Enter Username" name="username">
+            <input type="text" class="form-input" id="username" placeholder="Enter Username" name="username" required>
         </div>
+        <!-- Input untuk Password -->
         <div class="mb-3" style="text-align: left">
             <label for="password">Password</label>
-            <input type="password" class="form-input" id="password" placeholder="Enter Password" name="password">
+            <input type="password" class="form-input" id="password" placeholder="Enter Password" name="password" required>
         </div>
-            <button type="submit" class="btn">Login</button>
-        </div>
+
+        <!-- Tombol Login -->
+        <button type="submit" class="btn">Login</button>
       </form>
     </div>
   </div>

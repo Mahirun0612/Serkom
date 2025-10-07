@@ -18,6 +18,7 @@
                             <th>Nama Guru</th>
                             <th>Nip</th>
                             <th>Mapel</th>
+                            <th>Foto</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -27,10 +28,13 @@
                             <td>{{ $item->nama_guru }}</td>
                             <td>{{ $item->nip }}</td>
                             <td>{{ $item->mapel }}</td>
+                            <td><img src="{{ asset('storage/foto-guru/'.$item->foto) }}" alt="Foto {{ $item->name }}"
+                             class="rounded" width="50" height="50" style="object-fit: cover;"></td>
                             <td>
                                 <a href="{{route('guru.delete',Crypt::encrypt($item->id))}}" class="btn btn-sm btn-outline-danger"
                                     onclick="return confirm('Delete this data')"><i class="fas fa-trash"></i> Delete</a>
-                                <a href="{{ route('guru.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                                <a href="{{ route('guru.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fas fa-pencil"></i>Edit</a>
                             </td>
                         </tr>
                         @endforeach

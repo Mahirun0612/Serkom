@@ -25,6 +25,16 @@ class AdminController extends Controller
         $data['ekskul'] = Ekstrakurikuler::all();
         return view('admin.dashboard', $data);
     }
+    public function in()
+    {
+        $data['siswa'] = Siswa::all();
+        $data['guru'] = Guru::all();
+        $data['berita'] = Berita::all();
+        $data['galeri'] = Galeri::all();
+        $data['ekskul'] = Ekstrakurikuler::all();
+        return view('operator.dashboard', $data);
+    }
+
     public function user()
     {
         $data['user'] = User::all();
@@ -91,7 +101,7 @@ class AdminController extends Controller
     }
     public function login()
     {
-        return view('admin.login');
+        return view('login');
     }
     public function auth(Request $request){
         $validation = $request->validate([
@@ -102,6 +112,12 @@ class AdminController extends Controller
         if(Auth::attempt($validation)){
             if(Auth::user()->role === 'Admin'){
                 return redirect()->route('admin.dashboard');
+            }
+            elseif(Auth::user()->role === 'Operator'){
+                return redirect()->route('operator.dashboard');
+            }
+            else {
+                return redirect()->back();
             }
         }
 

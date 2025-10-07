@@ -19,13 +19,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" id="isi" name="isi" class="form-control" placeholder="Isi" value="{{ old('isi', $berita->isi) }}" required>
-                    <label for="isi">Isi</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="date" id="tanggal" name="tanggal" class="form-control" placeholder="Tanggal" required>
-                    <label for="tanggal">Tanggal</label>
+                    <textarea name="isi" id="isi" rows="5" style="width: 400px;" required>{{ $berita->isi }}</textarea>
                 </div>
 
                 <div>

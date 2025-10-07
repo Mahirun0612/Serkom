@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\Return_;
@@ -15,13 +16,23 @@ class BeritaController extends Controller
     //
     public function news()
     {
-        $data['berita'] = Berita::all();
+        $data['berita'] = Berita::latest()->take(4)->get();
         return view('public.berita',$data);
     }
     public function berita()
     {
         $data['berita'] = Berita::all();
-        return view('admin.berita', $data);
+        $prefix = Auth::user()->role;
+        return view($prefix.'.berita', $data);
+    }
+    public function detail(String $id){
+        try {
+            $id = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect()->back();
+        }
+        $data['berita'] = Berita::find($id);
+        return view('public.detail-berita', $data);
     }
     public function createBerita()
     {
@@ -42,6 +53,8 @@ class BeritaController extends Controller
         $foto->storeAs('foto-berita', $filename);
 
         $validate['foto'] = $filename;
+
+        $validate['tanggal'] = now();
 
         Berita::create([
             'judul' => $request->judul,
@@ -84,7 +97,6 @@ class BeritaController extends Controller
         $validate = $request->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'tanggal' => 'required',
             'foto' => 'required|image|mimes:png,jpg,jpeg',
             'user_id' => 'required'
         ]);

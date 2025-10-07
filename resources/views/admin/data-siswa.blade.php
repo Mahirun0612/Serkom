@@ -1,6 +1,7 @@
 @extends('admin.template')
 @section('content')
 <div class="container mt-4">
+   <!-- Bagian header dengan tombol tambah siswa -->
    <div class="py-3 fw-bold text-white d-flex justify-content-between" style="background-color: black;width:100%;border-radius:10px">
         <h3 class="ms-3">Data Siswa</h3>
         <a href="/create/siswa" class="btn btn-success mb-2 me-3">
@@ -9,9 +10,11 @@
     </div>
     <hr>
 
+    <!-- Card untuk menampilkan tabel data siswa -->
     <div class="card shadow-lg border-0">
         <div class="card-body">
             <div class="table-responsive">
+                <!-- Tabel data siswa -->
                 <table id="example" class="table table-hover mb-0">
                     <thead class="table-dark">
                         <tr>
@@ -23,6 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Looping untuk menampilkan data siswa -->
                         @foreach ($siswa as $item)
                         <tr>
                             <td>{{ $item->nama_siswa }}</td>
@@ -30,9 +34,12 @@
                             <td>{{ $item->jenis_kelamin }}</td>
                             <td>{{ $item->tahun_masuk }}</td>
                             <td>
-                                <a href="{{route('siswa.delete',Crypt::encrypt($item->id))}}" class="btn btn-sm btn-outline-danger"
+                                <!-- Tombol Delete dengan konfirmasi -->
+                                <a href="{{route('siswa.delete', Crypt::encrypt($item->id))}}" class="btn btn-sm btn-outline-danger"
                                     onclick="return confirm('Delete this data')"><i class="fas fa-trash"></i> Delete</a>
-                                <a href="{{ route('siswa.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                                <!-- Tombol Edit -->
+                                <a href="{{ route('siswa.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fas fa-pencil"></i>Edit</a>
                             </td>
                         </tr>
                         @endforeach
@@ -42,9 +49,12 @@
         </div>
     </div>
 </div>
+
+<!-- Inisialisasi DataTable untuk tabel -->
 <script>
 new DataTable('#example', {
     responsive: true
 })
 </script>
+
 @endsection

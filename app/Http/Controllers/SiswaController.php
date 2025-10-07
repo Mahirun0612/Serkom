@@ -22,9 +22,12 @@ class SiswaController extends Controller
     public function storeSiswa(Request $request){
         $validate = $request->validate([
             'nama_siswa' => 'required',
-            'nisn' => 'required',
+            'nisn' => 'required|digits:10|unique',
             'jenis_kelamin' => 'required',
             'tahun_masuk' => 'required'
+        ],[
+            'nisn.unique' => 'nisn tidak boleh sama',
+            'nisn.digits' => 'nisn tidak boleh lebih dari 10 karakter'
         ]);
 
         Siswa::create([
@@ -66,7 +69,7 @@ class SiswaController extends Controller
 
         $validate = $request->validate([
             'nama_siswa' => 'required',
-            'nisn' => 'required',
+            'nisn' => 'required|max:11',
             'jenis_kelamin' => 'required',
             'tahun_masuk' => 'required',
         ]);
